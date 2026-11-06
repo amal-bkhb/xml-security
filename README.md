@@ -84,9 +84,7 @@ Chaque document peut être validé contre son schéma avec un outil XML (xmllint
 xmllint --noout --schema schemas/factures.xsd xml-data/factures.xml
 ```
 
-## Auteure
 
-**Amal Bakhouya** — ENSIAS, filière Cybersecurity, Cloud & Mobile Computing.
 
 ## Licence
 
