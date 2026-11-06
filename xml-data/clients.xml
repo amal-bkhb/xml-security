@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../schemas/clients.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<nsClient:clients
+    xmlns:nsClient="http://entreprise.com/nsClient"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://entreprise.com/nsClient ../schemas/clients.xsd"
+    dateExport="2026-04-04">
+    <!-- Référentiel des clients -->
+    <nsClient:client idClient="C001" statut="actif">
+        <nsClient:nom>TechNova SARL</nsClient:nom>
+        <nsClient:email>contact@technova.ma</nsClient:email>
+        <nsClient:telephone>+212612345678</nsClient:telephone>
+        <nsClient:adresse>12 Rue Atlas, Casablanca</nsClient:adresse>
+        <nsClient:vip>true</nsClient:vip>
+    </nsClient:client>
+    <nsClient:client idClient="C002" statut="actif">
+        <nsClient:nom>DataBridge Consulting</nsClient:nom>
+        <nsClient:email>sales@databridge.com</nsClient:email>
+        <nsClient:telephone>+33144556677</nsClient:telephone>
+        <nsClient:adresse>88 Avenue Victor Hugo, Paris</nsClient:adresse>
+        <nsClient:vip>false</nsClient:vip>
+    </nsClient:client>
+    <nsClient:client idClient="C003" statut="inactif">
+        <nsClient:nom>GreenLogistics</nsClient:nom>
+        <nsClient:email>admin@greenlogistics.eu</nsClient:email>
+        <nsClient:telephone>+49891234567</nsClient:telephone>
+        <nsClient:adresse>7 Berliner Strasse, Munich</nsClient:adresse>
+        <nsClient:vip>false</nsClient:vip>
+    </nsClient:client>
+    <nsClient:client idClient="C004" statut="actif">
+        <nsClient:nom>MedCare Systems</nsClient:nom>
+        <nsClient:email>support@medcare.io</nsClient:email>
+        <nsClient:telephone>+12025550123</nsClient:telephone>
+        <nsClient:adresse>2100 K Street NW, Washington</nsClient:adresse>
+        <nsClient:vip>true</nsClient:vip>
+    </nsClient:client>
+    <nsClient:client idClient="C005" statut="en_attente">
+        <nsClient:nom>RetailSphere</nsClient:nom>
+        <nsClient:email>hello@retailsphere.net</nsClient:email>
+        <nsClient:telephone>+442071234567</nsClient:telephone>
+        <nsClient:adresse>51 Oxford Street, London</nsClient:adresse>
+        <nsClient:vip>false</nsClient:vip>
+    </nsClient:client>
+</nsClient:clients>

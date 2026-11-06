@@ -1,0 +1,17 @@
+<!ELEMENT nsInvoice:factures (nsInvoice:commandesRef, nsInvoice:facture+)>
+<!ATTLIST nsInvoice:factures dateExport CDATA #REQUIRED>
+
+<!ELEMENT nsInvoice:commandesRef (nsInvoice:commandeRef+)>
+<!ELEMENT nsInvoice:commandeRef EMPTY>
+<!ATTLIST nsInvoice:commandeRef idCommande ID #REQUIRED>
+
+<!ELEMENT nsInvoice:facture (nsInvoice:dateFacture, nsInvoice:montantHT, nsInvoice:tva, nsInvoice:montantTTC)>
+<!ATTLIST nsInvoice:facture
+    idFacture ID #REQUIRED
+    commandeRef IDREF #REQUIRED
+    statut (payee|impayee|en_attente|actif|inactif) #REQUIRED>
+
+<!ELEMENT nsInvoice:dateFacture (#PCDATA)>
+<!ELEMENT nsInvoice:montantHT (#PCDATA)>
+<!ELEMENT nsInvoice:tva (#PCDATA)>
+<!ELEMENT nsInvoice:montantTTC (#PCDATA)>

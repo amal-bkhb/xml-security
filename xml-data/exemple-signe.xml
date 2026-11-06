@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../schemas/exemple-signe.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<!-- Instance XML signée (fichier attendu: xml-data/exemple-signe.xml). -->
+<!-- Ne pas remplacer ce contenu par schemas/exemple-signe.xsd. -->
+<!-- Oxygen: si "aucun schéma associé", activer le support des fichiers principaux et relancer la validation. -->
+<nsInvoice:factureSignee
+    xmlns:nsInvoice="http://entreprise.com/nsInvoice"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://entreprise.com/nsInvoice ../schemas/exemple-signe.xsd"
+    idFacture="F9002">
+    <nsInvoice:montantTTC>4500.50</nsInvoice:montantTTC>
+    <ds:Signature>
+        <ds:SignedInfo>
+            <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+            <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+            <ds:Reference URI="">
+                <ds:Transforms>
+                    <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+                    <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                </ds:Transforms>
+                <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+                <ds:DigestValue>qM9jA4QXAvf9gPe4d2h9N/0d6Xf8x6xHf0Y2q4hJ8uU=</ds:DigestValue>
+            </ds:Reference>
+        </ds:SignedInfo>
+        <ds:SignatureValue>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsampleSignatureValue==</ds:SignatureValue>
+        <ds:KeyInfo>
+            <ds:KeyName>amal-signing-key</ds:KeyName>
+        </ds:KeyInfo>
+    </ds:Signature>
+</nsInvoice:factureSignee>

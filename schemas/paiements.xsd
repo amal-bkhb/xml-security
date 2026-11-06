@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://entreprise.com/nsInvoice"
+    xmlns:nsInvoice="http://entreprise.com/nsInvoice"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+    
+    <xs:simpleType name="StatutType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="actif"/>
+            <xs:enumeration value="inactif"/>
+            <xs:enumeration value="payee"/>
+            <xs:enumeration value="impayee"/>
+            <xs:enumeration value="en_attente"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="MethodeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="virement"/>
+            <xs:enumeration value="carte"/>
+            <xs:enumeration value="prelevement"/>
+            <xs:enumeration value="cheque"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="PaiementType">
+        <xs:sequence>
+            <xs:element name="datePaiement" type="xs:date"/>
+            <xs:element name="montant" type="xs:decimal"/>
+            <xs:element name="methode" type="nsInvoice:MethodeType"/>
+        </xs:sequence>
+        <xs:attribute name="idPaiement" type="xs:ID" use="required"/>
+        <xs:attribute name="factureRef" type="xs:IDREF" use="required"/>
+        <xs:attribute name="statut" type="nsInvoice:StatutType" use="required"/>
+    </xs:complexType>
+    
+    <xs:element name="paiements">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="facturesRef">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="factureRef" minOccurs="5" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="idFacture" type="xs:ID" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="paiement" type="nsInvoice:PaiementType" minOccurs="5" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="dateExport" type="xs:date" use="required"/>
+        </xs:complexType>
+        
+        <xs:key name="FactureRefKeyPaiement">
+            <xs:selector xpath="nsInvoice:facturesRef/nsInvoice:factureRef"/>
+            <xs:field xpath="@idFacture"/>
+        </xs:key>
+        
+        <xs:keyref name="PaiementFactureRef" refer="nsInvoice:FactureRefKeyPaiement">
+            <xs:selector xpath="nsInvoice:paiement"/>
+            <xs:field xpath="@factureRef"/>
+        </xs:keyref>
+    </xs:element>
+</xs:schema>

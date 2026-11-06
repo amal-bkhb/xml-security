@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://entreprise.com/nsInvoice"
+           xmlns:nsInvoice="http://entreprise.com/nsInvoice"
+           xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <xs:element name="donneesSensibles">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:any namespace="http://www.w3.org/2001/04/xmlenc#" processContents="lax" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

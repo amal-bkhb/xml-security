@@ -1,0 +1,20 @@
+# Build Maven
+target/
+
+# Sortie compilee Eclipse
+bin/
+*.class
+
+# Metadonnees IDE
+.project
+.classpath
+.settings/
+.idea/
+*.iml
+
+# Fichiers generes par la demo (signature / chiffrement)
+xml-data/*-signees.xml
+xml-data/*-chiffrees.xml
+
+# Systeme
+.DS_Store

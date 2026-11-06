@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../schemas/factures.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<!-- Validation attendue en XSD (ne pas ajouter de DOCTYPE DTD). -->
+<nsInvoice:factures
+    xmlns:nsInvoice="http://entreprise.com/nsInvoice"
+    xmlns:nsOrder="http://entreprise.com/nsOrder"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://entreprise.com/nsInvoice ../schemas/factures.xsd"
+    dateExport="2026-04-04">
+    <!-- Les références de commande sont alignées avec commandes.xml -->
+    <nsInvoice:commandesRef>
+        <nsInvoice:commandeRef idCommande="O1001"/>
+        <nsInvoice:commandeRef idCommande="O1002"/>
+        <nsInvoice:commandeRef idCommande="O1003"/>
+        <nsInvoice:commandeRef idCommande="O1004"/>
+        <nsInvoice:commandeRef idCommande="O1005"/>
+    </nsInvoice:commandesRef>
+    
+    <nsInvoice:facture idFacture="F9001" commandeRef="O1001" statut="impayee">
+        <nsInvoice:dateFacture>2026-03-27</nsInvoice:dateFacture>
+        <nsInvoice:montantHT>10416.67</nsInvoice:montantHT>
+        <nsInvoice:tva>2083.33</nsInvoice:tva>
+        <nsInvoice:montantTTC>12500.00</nsInvoice:montantTTC>
+    </nsInvoice:facture>
+    <nsInvoice:facture idFacture="F9002" commandeRef="O1002" statut="payee">
+        <nsInvoice:dateFacture>2026-03-28</nsInvoice:dateFacture>
+        <nsInvoice:montantHT>3750.42</nsInvoice:montantHT>
+        <nsInvoice:tva>750.08</nsInvoice:tva>
+        <nsInvoice:montantTTC>4500.50</nsInvoice:montantTTC>
+    </nsInvoice:facture>
+    <nsInvoice:facture idFacture="F9003" commandeRef="O1003" statut="impayee">
+        <nsInvoice:dateFacture>2026-03-29</nsInvoice:dateFacture>
+        <nsInvoice:montantHT>1833.33</nsInvoice:montantHT>
+        <nsInvoice:tva>366.67</nsInvoice:tva>
+        <nsInvoice:montantTTC>2200.00</nsInvoice:montantTTC>
+    </nsInvoice:facture>
+    <nsInvoice:facture idFacture="F9004" commandeRef="O1004" statut="payee">
+        <nsInvoice:dateFacture>2026-03-30</nsInvoice:dateFacture>
+        <nsInvoice:montantHT>8167.29</nsInvoice:montantHT>
+        <nsInvoice:tva>1633.46</nsInvoice:tva>
+        <nsInvoice:montantTTC>9800.75</nsInvoice:montantTTC>
+    </nsInvoice:facture>
+    <nsInvoice:facture idFacture="F9005" commandeRef="O1005" statut="en_attente">
+        <nsInvoice:dateFacture>2026-03-31</nsInvoice:dateFacture>
+        <nsInvoice:montantHT>2583.33</nsInvoice:montantHT>
+        <nsInvoice:tva>516.67</nsInvoice:tva>
+        <nsInvoice:montantTTC>3100.00</nsInvoice:montantTTC>
+    </nsInvoice:facture>
+</nsInvoice:factures>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://entreprise.com/nsInvoice"
+           xmlns:nsInvoice="http://entreprise.com/nsInvoice"
+           xmlns:nsOrder="http://entreprise.com/nsOrder"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <xs:import namespace="http://entreprise.com/nsOrder" schemaLocation="commandes.xsd"/>
+
+    <xs:simpleType name="StatutType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="actif"/>
+            <xs:enumeration value="inactif"/>
+            <xs:enumeration value="payee"/>
+            <xs:enumeration value="impayee"/>
+            <xs:enumeration value="en_attente"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="FactureType">
+        <xs:sequence>
+            <xs:element name="dateFacture" type="xs:date"/>
+            <xs:element name="montantHT" type="xs:decimal"/>
+            <xs:element name="tva" type="xs:decimal"/>
+            <xs:element name="montantTTC" type="xs:decimal"/>
+        </xs:sequence>
+        <xs:attribute name="idFacture" type="xs:ID" use="required"/>
+        <xs:attribute name="commandeRef" type="xs:IDREF" use="required"/>
+        <xs:attribute name="statut" type="nsInvoice:StatutType" use="required"/>
+    </xs:complexType>
+
+    <xs:element name="factures">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="commandesRef">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="commandeRef" minOccurs="5" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="idCommande" type="xs:ID" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="facture" type="nsInvoice:FactureType" minOccurs="5" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="dateExport" type="xs:date" use="required"/>
+        </xs:complexType>
+
+        <xs:key name="CommandeRefKey">
+            <xs:selector xpath="nsInvoice:commandesRef/nsInvoice:commandeRef"/>
+            <xs:field xpath="@idCommande"/>
+        </xs:key>
+
+        <xs:key name="FactureKey">
+            <xs:selector xpath="nsInvoice:facture"/>
+            <xs:field xpath="@idFacture"/>
+        </xs:key>
+
+        <xs:keyref name="FactureCommandeRef" refer="nsInvoice:CommandeRefKey">
+            <xs:selector xpath="nsInvoice:facture"/>
+            <xs:field xpath="@commandeRef"/>
+        </xs:keyref>
+    </xs:element>
+</xs:schema>

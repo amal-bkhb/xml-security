@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../schemas/tickets.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<!-- Validation attendue en XSD (ne pas ajouter de DOCTYPE DTD). -->
+<nsSupport:tickets
+    xmlns:nsSupport="http://entreprise.com/nsSupport"
+    xmlns:nsClient="http://entreprise.com/nsClient"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://entreprise.com/nsSupport ../schemas/tickets.xsd"
+    dateExport="2026-04-04">
+    <nsSupport:clientsRef>
+        <nsSupport:clientRef idClient="C001"/>
+        <nsSupport:clientRef idClient="C002"/>
+        <nsSupport:clientRef idClient="C003"/>
+        <nsSupport:clientRef idClient="C004"/>
+        <nsSupport:clientRef idClient="C005"/>
+    </nsSupport:clientsRef>
+    
+    <nsSupport:ticket idTicket="T7001" clientRef="C001" statut="en_attente">
+        <nsSupport:dateOuverture>2026-03-30</nsSupport:dateOuverture>
+        <nsSupport:priorite>haute</nsSupport:priorite>
+        <nsSupport:sujet>Erreur de validation XSD en production</nsSupport:sujet>
+        <nsSupport:resolu>false</nsSupport:resolu>
+    </nsSupport:ticket>
+    <nsSupport:ticket idTicket="T7002" clientRef="C002" statut="actif">
+        <nsSupport:dateOuverture>2026-03-29</nsSupport:dateOuverture>
+        <nsSupport:priorite>moyenne</nsSupport:priorite>
+        <nsSupport:sujet>Demande d'évolution API de commandes</nsSupport:sujet>
+        <nsSupport:resolu>false</nsSupport:resolu>
+    </nsSupport:ticket>
+    <nsSupport:ticket idTicket="T7003" clientRef="C003" statut="inactif">
+        <nsSupport:dateOuverture>2026-03-20</nsSupport:dateOuverture>
+        <nsSupport:priorite>basse</nsSupport:priorite>
+        <nsSupport:sujet>Archivage ancien flux XML</nsSupport:sujet>
+        <nsSupport:resolu>true</nsSupport:resolu>
+    </nsSupport:ticket>
+    <nsSupport:ticket idTicket="T7004" clientRef="C004" statut="actif">
+        <nsSupport:dateOuverture>2026-04-01</nsSupport:dateOuverture>
+        <nsSupport:priorite>haute</nsSupport:priorite>
+        <nsSupport:sujet>Synchronisation facturation interrompue</nsSupport:sujet>
+        <nsSupport:resolu>false</nsSupport:resolu>
+    </nsSupport:ticket>
+    <nsSupport:ticket idTicket="T7005" clientRef="C005" statut="en_attente">
+        <nsSupport:dateOuverture>2026-04-02</nsSupport:dateOuverture>
+        <nsSupport:priorite>moyenne</nsSupport:priorite>
+        <nsSupport:sujet>Ouverture de compte service support</nsSupport:sujet>
+        <nsSupport:resolu>false</nsSupport:resolu>
+    </nsSupport:ticket>
+</nsSupport:tickets>

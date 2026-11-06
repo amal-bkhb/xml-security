@@ -1,0 +1,16 @@
+<!ELEMENT nsInvoice:paiements (nsInvoice:facturesRef, nsInvoice:paiement+)>
+<!ATTLIST nsInvoice:paiements dateExport CDATA #REQUIRED>
+
+<!ELEMENT nsInvoice:facturesRef (nsInvoice:factureRef+)>
+<!ELEMENT nsInvoice:factureRef EMPTY>
+<!ATTLIST nsInvoice:factureRef idFacture ID #REQUIRED>
+
+<!ELEMENT nsInvoice:paiement (nsInvoice:datePaiement, nsInvoice:montant, nsInvoice:methode)>
+<!ATTLIST nsInvoice:paiement
+    idPaiement ID #REQUIRED
+    factureRef IDREF #REQUIRED
+    statut (payee|impayee|en_attente|actif|inactif) #REQUIRED>
+
+<!ELEMENT nsInvoice:datePaiement (#PCDATA)>
+<!ELEMENT nsInvoice:montant (#PCDATA)>
+<!ELEMENT nsInvoice:methode (#PCDATA)>

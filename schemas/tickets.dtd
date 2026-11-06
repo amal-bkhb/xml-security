@@ -1,0 +1,17 @@
+<!ELEMENT nsSupport:tickets (nsSupport:clientsRef, nsSupport:ticket+)>
+<!ATTLIST nsSupport:tickets dateExport CDATA #REQUIRED>
+
+<!ELEMENT nsSupport:clientsRef (nsSupport:clientRef+)>
+<!ELEMENT nsSupport:clientRef EMPTY>
+<!ATTLIST nsSupport:clientRef idClient ID #REQUIRED>
+
+<!ELEMENT nsSupport:ticket (nsSupport:dateOuverture, nsSupport:priorite, nsSupport:sujet, nsSupport:resolu)>
+<!ATTLIST nsSupport:ticket
+    idTicket ID #REQUIRED
+    clientRef IDREF #REQUIRED
+    statut (actif|inactif|en_attente|payee|impayee) #REQUIRED>
+
+<!ELEMENT nsSupport:dateOuverture (#PCDATA)>
+<!ELEMENT nsSupport:priorite (#PCDATA)>
+<!ELEMENT nsSupport:sujet (#PCDATA)>
+<!ELEMENT nsSupport:resolu (#PCDATA)>

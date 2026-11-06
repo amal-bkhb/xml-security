@@ -1,0 +1,17 @@
+<!ELEMENT nsOrder:commandes (nsOrder:clientsRef, nsOrder:commande+)>
+<!ATTLIST nsOrder:commandes dateExport CDATA #REQUIRED>
+
+<!ELEMENT nsOrder:clientsRef (nsOrder:clientRef+)>
+<!ELEMENT nsOrder:clientRef EMPTY>
+<!ATTLIST nsOrder:clientRef idClient ID #REQUIRED>
+
+<!ELEMENT nsOrder:commande (nsOrder:dateCommande, nsOrder:montantTotal, nsOrder:article)>
+<!ATTLIST nsOrder:commande
+    idCommande ID #REQUIRED
+    clientRef IDREF #REQUIRED
+    statut (actif|inactif|payee|impayee|en_attente) #REQUIRED>
+
+<!ELEMENT nsOrder:dateCommande (#PCDATA)>
+<!ELEMENT nsOrder:montantTotal (#PCDATA)>
+<!ELEMENT nsOrder:article (#PCDATA)>
+<!ATTLIST nsOrder:article sku CDATA #REQUIRED quantite CDATA #REQUIRED>

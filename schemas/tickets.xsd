@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://entreprise.com/nsSupport"
+           xmlns:nsSupport="http://entreprise.com/nsSupport"
+           xmlns:nsClient="http://entreprise.com/nsClient"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <xs:import namespace="http://entreprise.com/nsClient" schemaLocation="clients.xsd"/>
+
+    <xs:simpleType name="StatutType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="actif"/>
+            <xs:enumeration value="inactif"/>
+            <xs:enumeration value="payee"/>
+            <xs:enumeration value="impayee"/>
+            <xs:enumeration value="en_attente"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PrioriteType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="basse"/>
+            <xs:enumeration value="moyenne"/>
+            <xs:enumeration value="haute"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="TicketType">
+        <xs:sequence>
+            <xs:element name="dateOuverture" type="xs:date"/>
+            <xs:element name="priorite" type="nsSupport:PrioriteType"/>
+            <xs:element name="sujet" type="xs:string"/>
+            <xs:element name="resolu" type="xs:boolean"/>
+        </xs:sequence>
+        <xs:attribute name="idTicket" type="xs:ID" use="required"/>
+        <xs:attribute name="clientRef" type="xs:IDREF" use="required"/>
+        <xs:attribute name="statut" type="nsSupport:StatutType" use="required"/>
+    </xs:complexType>
+
+    <xs:element name="tickets">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="clientsRef">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="clientRef" minOccurs="5" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="idClient" type="xs:ID" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ticket" type="nsSupport:TicketType" minOccurs="5" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="dateExport" type="xs:date" use="required"/>
+        </xs:complexType>
+
+        <xs:key name="ClientRefKeySupport">
+            <xs:selector xpath="nsSupport:clientsRef/nsSupport:clientRef"/>
+            <xs:field xpath="@idClient"/>
+        </xs:key>
+
+        <xs:keyref name="TicketClientRef" refer="nsSupport:ClientRefKeySupport">
+            <xs:selector xpath="nsSupport:ticket"/>
+            <xs:field xpath="@clientRef"/>
+        </xs:keyref>
+    </xs:element>
+</xs:schema>

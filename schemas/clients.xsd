@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://entreprise.com/nsClient"
+           xmlns:nsClient="http://entreprise.com/nsClient"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <xs:simpleType name="StatutType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="actif"/>
+            <xs:enumeration value="inactif"/>
+            <xs:enumeration value="payee"/>
+            <xs:enumeration value="impayee"/>
+            <xs:enumeration value="en_attente"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="EmailType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TelephoneType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\+[0-9]{8,15}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ClientType">
+        <xs:sequence>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="email" type="nsClient:EmailType"/>
+            <xs:element name="telephone" type="nsClient:TelephoneType"/>
+            <xs:element name="adresse" type="xs:string"/>
+            <xs:element name="vip" type="xs:boolean"/>
+        </xs:sequence>
+        <xs:attribute name="idClient" type="xs:ID" use="required"/>
+        <xs:attribute name="statut" type="nsClient:StatutType" use="required"/>
+    </xs:complexType>
+
+    <xs:element name="clients">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="client" type="nsClient:ClientType" minOccurs="5" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="dateExport" type="xs:date" use="required"/>
+        </xs:complexType>
+        <xs:key name="ClientKey">
+            <xs:selector xpath="nsClient:client"/>
+            <xs:field xpath="@idClient"/>
+        </xs:key>
+    </xs:element>
+</xs:schema>

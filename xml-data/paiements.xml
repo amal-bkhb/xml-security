@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../schemas/paiements.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<nsInvoice:paiements
+    xmlns:nsInvoice="http://entreprise.com/nsInvoice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://entreprise.com/nsInvoice ../schemas/paiements.xsd"
+    dateExport="2026-04-04">
+    <!-- Les références facture sont alignées avec factures.xml -->
+    <nsInvoice:facturesRef>
+        <nsInvoice:factureRef idFacture="F9001"/>
+        <nsInvoice:factureRef idFacture="F9002"/>
+        <nsInvoice:factureRef idFacture="F9003"/>
+        <nsInvoice:factureRef idFacture="F9004"/>
+        <nsInvoice:factureRef idFacture="F9005"/>
+    </nsInvoice:facturesRef>
+    
+    <nsInvoice:paiement idPaiement="P3001" factureRef="F9001" statut="en_attente">
+        <nsInvoice:datePaiement>2026-04-02</nsInvoice:datePaiement>
+        <nsInvoice:montant>6250.00</nsInvoice:montant>
+        <nsInvoice:methode>virement</nsInvoice:methode>
+    </nsInvoice:paiement>
+    <nsInvoice:paiement idPaiement="P3002" factureRef="F9002" statut="payee">
+        <nsInvoice:datePaiement>2026-03-30</nsInvoice:datePaiement>
+        <nsInvoice:montant>4500.50</nsInvoice:montant>
+        <nsInvoice:methode>carte</nsInvoice:methode>
+    </nsInvoice:paiement>
+    <nsInvoice:paiement idPaiement="P3003" factureRef="F9003" statut="impayee">
+        <nsInvoice:datePaiement>2026-04-01</nsInvoice:datePaiement>
+        <nsInvoice:montant>0.00</nsInvoice:montant>
+        <nsInvoice:methode>prelevement</nsInvoice:methode>
+    </nsInvoice:paiement>
+    <nsInvoice:paiement idPaiement="P3004" factureRef="F9004" statut="payee">
+        <nsInvoice:datePaiement>2026-04-01</nsInvoice:datePaiement>
+        <nsInvoice:montant>9800.75</nsInvoice:montant>
+        <nsInvoice:methode>virement</nsInvoice:methode>
+    </nsInvoice:paiement>
+    <nsInvoice:paiement idPaiement="P3005" factureRef="F9005" statut="en_attente">
+        <nsInvoice:datePaiement>2026-04-03</nsInvoice:datePaiement>
+        <nsInvoice:montant>1000.00</nsInvoice:montant>
+        <nsInvoice:methode>cheque</nsInvoice:methode>
+    </nsInvoice:paiement>
+</nsInvoice:paiements>

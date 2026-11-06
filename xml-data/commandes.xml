@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../schemas/commandes.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<!-- Validation attendue en XSD (ne pas ajouter de DOCTYPE DTD sur ce fichier namespacé). -->
+<nsOrder:commandes
+    xmlns:nsOrder="http://entreprise.com/nsOrder"
+    xmlns:nsClient="http://entreprise.com/nsClient"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://entreprise.com/nsOrder ../schemas/commandes.xsd"
+    dateExport="2026-04-04">
+    <!-- Les références client sont alignées avec clients.xml -->
+    <nsOrder:clientsRef>
+        <nsOrder:clientRef idClient="C001"/>
+        <nsOrder:clientRef idClient="C002"/>
+        <nsOrder:clientRef idClient="C003"/>
+        <nsOrder:clientRef idClient="C004"/>
+        <nsOrder:clientRef idClient="C005"/>
+    </nsOrder:clientsRef>
+    
+    <nsOrder:commande idCommande="O1001" clientRef="C001" statut="en_attente">
+        <nsOrder:dateCommande>2026-03-26</nsOrder:dateCommande>
+        <nsOrder:montantTotal>12500.00</nsOrder:montantTotal>
+        <nsOrder:article sku="SRV-ERP-01" quantite="1">Intégration ERP XML</nsOrder:article>
+    </nsOrder:commande>
+    <nsOrder:commande idCommande="O1002" clientRef="C002" statut="payee">
+        <nsOrder:dateCommande>2026-03-27</nsOrder:dateCommande>
+        <nsOrder:montantTotal>4500.50</nsOrder:montantTotal>
+        <nsOrder:article sku="API-GW-02" quantite="3">Passerelle API B2B</nsOrder:article>
+    </nsOrder:commande>
+    <nsOrder:commande idCommande="O1003" clientRef="C003" statut="impayee">
+        <nsOrder:dateCommande>2026-03-28</nsOrder:dateCommande>
+        <nsOrder:montantTotal>2200.00</nsOrder:montantTotal>
+        <nsOrder:article sku="SUP-XML-03" quantite="2">Support XML Premium</nsOrder:article>
+    </nsOrder:commande>
+    <nsOrder:commande idCommande="O1004" clientRef="C004" statut="payee">
+        <nsOrder:dateCommande>2026-03-29</nsOrder:dateCommande>
+        <nsOrder:montantTotal>9800.75</nsOrder:montantTotal>
+        <nsOrder:article sku="INT-HL7-04" quantite="1">Connecteur HL7/FHIR</nsOrder:article>
+    </nsOrder:commande>
+    <nsOrder:commande idCommande="O1005" clientRef="C005" statut="en_attente">
+        <nsOrder:dateCommande>2026-03-30</nsOrder:dateCommande>
+        <nsOrder:montantTotal>3100.00</nsOrder:montantTotal>
+        <nsOrder:article sku="ANL-DWH-05" quantite="1">Pack Analytics XML</nsOrder:article>
+    </nsOrder:commande>
+</nsOrder:commandes>

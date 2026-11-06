@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Exemple pédagogique d'un XML chiffré (structure XML Encryption) -->
+<nsInvoice:donneesSensibles
+    xmlns:nsInvoice="http://entreprise.com/nsInvoice"
+    xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://entreprise.com/nsInvoice ../schemas/exemple-chiffre.xsd">
+    <xenc:EncryptedData Type="http://www.w3.org/2001/04/xmlenc#Element">
+        <xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc"/>
+        <ds:KeyInfo>
+            <xenc:EncryptedKey>
+                <xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"/>
+                <xenc:CipherData>
+                    <xenc:CipherValue>Q2lwaGVyS2V5VmFsdWVTYW1wbGU=</xenc:CipherValue>
+                </xenc:CipherData>
+            </xenc:EncryptedKey>
+        </ds:KeyInfo>
+        <xenc:CipherData>
+            <xenc:CipherValue>QmFzZTY0Q2lwaGVyVGV4dFNhbXBsZQ==</xenc:CipherValue>
+        </xenc:CipherData>
+    </xenc:EncryptedData>
+</nsInvoice:donneesSensibles>

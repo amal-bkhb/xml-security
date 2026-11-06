@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://entreprise.com/nsOrder"
+           xmlns:nsOrder="http://entreprise.com/nsOrder"
+           xmlns:nsClient="http://entreprise.com/nsClient"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <xs:import namespace="http://entreprise.com/nsClient" schemaLocation="clients.xsd"/>
+
+    <xs:simpleType name="StatutType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="actif"/>
+            <xs:enumeration value="inactif"/>
+            <xs:enumeration value="payee"/>
+            <xs:enumeration value="impayee"/>
+            <xs:enumeration value="en_attente"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ArticleType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="sku" type="xs:string" use="required"/>
+                <xs:attribute name="quantite" type="xs:positiveInteger" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="CommandeType">
+        <xs:sequence>
+            <xs:element name="dateCommande" type="xs:date"/>
+            <xs:element name="montantTotal" type="xs:decimal"/>
+            <xs:element name="article" type="nsOrder:ArticleType"/>
+        </xs:sequence>
+        <xs:attribute name="idCommande" type="xs:ID" use="required"/>
+        <xs:attribute name="clientRef" type="xs:IDREF" use="required"/>
+        <xs:attribute name="statut" type="nsOrder:StatutType" use="required"/>
+    </xs:complexType>
+
+    <xs:element name="commandes">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="clientsRef">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="clientRef" minOccurs="5" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="idClient" type="xs:ID" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="commande" type="nsOrder:CommandeType" minOccurs="5" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="dateExport" type="xs:date" use="required"/>
+        </xs:complexType>
+
+        <xs:key name="ClientRefKey">
+            <xs:selector xpath="nsOrder:clientsRef/nsOrder:clientRef"/>
+            <xs:field xpath="@idClient"/>
+        </xs:key>
+
+        <xs:key name="CommandeKey">
+            <xs:selector xpath="nsOrder:commande"/>
+            <xs:field xpath="@idCommande"/>
+        </xs:key>
+
+        <xs:keyref name="CommandeClientRef" refer="nsOrder:ClientRefKey">
+            <xs:selector xpath="nsOrder:commande"/>
+            <xs:field xpath="@clientRef"/>
+        </xs:keyref>
+    </xs:element>
+</xs:schema>

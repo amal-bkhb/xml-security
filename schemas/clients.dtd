@@ -1,0 +1,13 @@
+<!ELEMENT nsClient:clients (nsClient:client+)>
+<!ATTLIST nsClient:clients dateExport CDATA #REQUIRED>
+
+<!ELEMENT nsClient:client (nsClient:nom, nsClient:email, nsClient:telephone, nsClient:adresse, nsClient:vip)>
+<!ATTLIST nsClient:client
+    idClient ID #REQUIRED
+    statut (actif|inactif|en_attente) #REQUIRED>
+
+<!ELEMENT nsClient:nom (#PCDATA)>
+<!ELEMENT nsClient:email (#PCDATA)>
+<!ELEMENT nsClient:telephone (#PCDATA)>
+<!ELEMENT nsClient:adresse (#PCDATA)>
+<!ELEMENT nsClient:vip (#PCDATA)>
